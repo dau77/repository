@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>day1</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+</body>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    // 生命周期： beforeCreate  created
+    //          beforeMount mounted
+    //          beforeUpdate updated
+    //          beforeDestroy destroyed      
+    let vm = new Vue({ // 根实例，初始化时会调用很多方法(钩子函数)
+        beforeCreate() { // 1、一般此方法用不到
+            // debugger;
+            console.log('beforeCreate');
+        },
+        data: {
+            message: '123'
+        },
+        created() { // 2、通过Ajax获取数据(尽量早些发送ajax请求)，初始化操作
+            //debugger;
+            console.log('created');
+        },
+        //el: "#app",
+        // 4、如果有template属性会用模板替换掉外部HTML，只要有此属性，app中的内容就没有任何意义了，只能有一个根元素，不能是文本
+        template: '<div>{{message}}</div>',
+        // 没有实际意义
+        beforeMount() {
+            console.log('dom渲染前');
+        },
+        // 真实dom渲染完了，可以操作dom了
+        mounted() {
+            console.log('dom渲染后');
+        },
+        // 数据更新前   一般会用watch来替换beforeUpdate 和 updated
+        beforeUpdate() {
+            console.log('数据更新前');
+        },
+        // 数据更新后
+        updated() {
+            console.log('数据更新后');
+        },
+        beforeDestroy() { // 可以清楚定时器 或者清楚事件绑定
+            console.log('vm销毁前');
+        },
+        destroyed() {
+            console.log('vm销毁后');
+        },
+        methods: {}
+
+    });
+    // 3、要保证有编译的元素   在vue实例中写 el: "#app"，或者用下面方式写
+    vm.$mount("#app");
+    // 销毁vm
+    //vm.$destroy();
+</script>
+
+</html>

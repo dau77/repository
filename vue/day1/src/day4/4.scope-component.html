@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>day1</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--
+
+            使用半闭合有问题 ,可能不能正常显示 <component1/>
+        -->
+        <component1></component1>
+        <component2></component2>
+
+    </div>
+</body>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    /* 
+            局部组件
+            局部组件使用三部曲
+            1、创建这个组件，
+            2、注册这个组件
+            3、使用这个组件 
+            组件是相互独立的，不能直接跨作用域  实例也是一个组件，组件中拥有生命周期函数
+            */
+    let obj = { // 如果组件共用了数据，会导致同时更新(独立性)
+            school: 'zfpx'
+        }
+        // 子组件不能直接使用父组件的数据(组件间数据交互)
+        // 组件理论上可以无限嵌套
+    let component1 = {
+        template: '<div @click="fn">组件1 {{school}}</div>',
+        data() {
+            return obj
+        },
+        methods: {
+            fn() {
+                this.school = 'hello'
+            }
+        }
+    };
+    let component2 = {
+        template: '<div>组件2 {{school}}</div>',
+        data() {
+            return obj
+        }
+    }
+    let vm = new Vue({ // 根实例，初始化时会调用很多方法(钩子函数)
+        el: "#app",
+        components: {
+            component1: component1,
+            component2
+        },
+        data: {},
+        methods: {}
+
+    })
+</script>
+
+</html>

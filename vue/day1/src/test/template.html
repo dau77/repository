@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>day1</title>
+</head>
+
+<body>
+    <div id="app">
+        <msg message="消息提示了"></msg>
+    </div>
+
+    <template id="msg">
+        <div>
+            这个消息不错哟！
+            {{message}}
+        </div>
+    </template>
+</body>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    let msg = {
+        template: '#msg',
+        props: ['message'],
+    }
+    let vm = new Vue({ // 根实例，初始化时会调用很多方法(钩子函数)
+        el: "#app",
+        components: {
+            msg
+        },
+        data: {},
+        methods: {}
+
+    })
+</script>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>day1</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- vue自带组件 template slot transition -->
+        <input type="radio" v-model="main" value="home">home
+        <input type="radio" v-model="main" value="list">list
+        <!-- 一般用作缓存：为的是后面的路由做准备，如果缓存了，就不会再走 created,mounted钩子函数-->
+
+        <keep-alive>
+            <component :is="main">
+
+            </component>
+        </keep-alive>
+
+    </div>
+</body>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    let home = {
+        template: '<div>home</div>',
+        beforeDestroy() {
+            console.log('销毁');
+        },
+        mounted() {
+            console.log('挂载');
+        },
+    }
+    let list = {
+        template: '<div>list</div>',
+        mounted() {
+            console.log('挂载');
+        },
+        beforeDestroy() {
+            console.log('销毁');
+        },
+    }
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            main: 'home'
+        },
+        components: {
+            home,
+            list
+        },
+        methods: {}
+
+    })
+</script>
+
+</html>

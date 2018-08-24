@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>day1</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
+    <!-- <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet"> -->
+</head>
+
+<body>
+    <div id="app">
+        <panel type="primary"></panel>
+    </div>
+    <template id="panel">
+        <div class="panel" :class="[type]">
+            <div  class="panel-heading"></div>
+            <div class="panel-body"></div>
+            <div class="panel-footer"></div>
+        </div>
+    </template>
+</body>
+<script src="../../node_modules/vue/dist/vue.js"></script>
+<script>
+    let panel = {
+        template: '#panel',
+        props: {
+            type: {
+                type: [String],
+                default: "default"
+            }
+        }
+    }
+    let vm = new Vue({
+        el: "#app",
+        components: {
+            panel
+        },
+        data: {},
+        methods: {}
+
+    })
+</script>
+
+</html>
