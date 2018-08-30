@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.equator.dao.CostInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.equator.model.CostInfo">
+        <id column="cost_info_id" property="costInfoId" />
+        <result column="cost_info_no" property="costInfoNo" />
+        <result column="plan_table" property="planTable" />
+        <result column="plan_id" property="planId" />
+        <result column="plan_no" property="planNo" />
+        <result column="total_pay" property="totalPay" />
+        <result column="total_paid" property="totalPaid" />
+        <result column="booked_num" property="bookedNum" />
+        <result column="version_remark" property="versionRemark" />
+        <result column="version_name" property="versionName" />
+        <result column="who_add" property="whoAdd" />
+        <result column="add_time" property="addTime" />
+        <result column="editor" property="editor" />
+        <result column="modify_time" property="modifyTime" />
+        <result column="check_time" property="checkTime" />
+        <result column="is_last_version" property="isLastVersion" />
+        <result column="cost_info_status" property="costInfoStatus" />
+        <result column="accounting_date" property="accountingDate" />
+        <result column="plan_name" property="planName" />
+        <result column="plan_name_for_short" property="planNameForShort" />
+        <result column="plan_time_1" property="planTime1" />
+        <result column="plan_time_2" property="planTime2" />
+        <result column="op_loc" property="opLoc" />
+        <result column="finally_flag" property="finallyFlag" />
+        <result column="op" property="op" />
+        <result column="source" property="source" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        cost_info_id, cost_info_no, plan_table, plan_id, plan_no, total_pay, total_paid, booked_num, version_remark, version_name, who_add, add_time, editor, modify_time, check_time, is_last_version, cost_info_status, accounting_date, plan_name, plan_name_for_short, plan_time_1, plan_time_2, op_loc, finally_flag, op, source
+    </sql>
+
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.equator.dao.AirticketFareBasisMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.equator.model.AirticketFareBasis">
+        <id column="airticket_fare_basis_id" property="airticketFareBasisId" />
+        <result column="from_airport" property="fromAirport" />
+        <result column="dest_airport" property="destAirport" />
+        <result column="mileage" property="mileage" />
+        <result column="fare_y" property="fareY" />
+        <result column="modified_time" property="modifiedTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        airticket_fare_basis_id, from_airport, dest_airport, mileage, fare_y, modified_time
+    </sql>
+
+</mapper>

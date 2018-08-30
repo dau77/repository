@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Base logback configuration provided for compatibility with Spring Boot 1.1
+-->
+<configuration  scan="true" scanPeriod="10 seconds">
+
+	<!--<logger name="org.springframework" level="INFO"/>-->
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+	<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
+	<!--<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/haro_spring2.log}"/>-->
+	<!-- <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-c:/yyy.log}}}/path_spring.log}"/> -->
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+
+
+	<property name="FILE_LOG_PATTERN_2" value="%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : == %class{30}[%line]==%n  %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx} %n%caller{3}"/>
+	<appender name="FILE_ERROR"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN_2}</pattern>
+		</encoder>
+		<file>${LOG_PATH}/error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>error.%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
+			<maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>
+			<maxHistory>${LOG_FILE_MAX_HISTORY:-0}</maxHistory>
+		</rollingPolicy>
+		<!-- 此日志文件只记录ERROR级别的 -->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+
+	<springProfile name="!production">
+		<root level="DEBUG">
+			<appender-ref ref="CONSOLE" />
+			<appender-ref ref="FILE" />
+			<appender-ref ref="FILE_ERROR" />
+		</root>
+	</springProfile>
+	<springProfile name="production">
+		<root level="INFO">
+			<appender-ref ref="FILE" />
+			<appender-ref ref="FILE_ERROR" />
+		</root>
+	</springProfile>
+
+
+</configuration>

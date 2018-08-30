@@ -1,0 +1,1 @@
+import ${pageComponent} from '@${pagePath}'
